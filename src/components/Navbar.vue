@@ -4,6 +4,8 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-text-field
+        v-model="search"
+        v-on:keyup.13="pesquisar"
         solo
         dense
         flat
@@ -14,7 +16,7 @@
         border-style: solid;
         border-color: rgb(49,49,49);"
       ></v-text-field>
-      <v-btn depressed color="rgb(52,51,50) " dark class="rounded-0" height="40px"
+      <v-btn depressed color="rgb(52,51,50) " dark class="rounded-0" height="40px" @click="pesquisar()"
         ><v-icon>mdi-magnify</v-icon></v-btn
       >
       <v-spacer></v-spacer>
@@ -95,6 +97,7 @@ export default {
   },
   data() {
     return {
+      search: "",
       right: null,
       drawer: true,
       versao: version,
@@ -123,5 +126,13 @@ export default {
       this.drawer = false;
     },
   },
+  methods:{
+    pesquisar(){
+      if(this.search){
+        this.$router.push('/pesquisar/' + this.search)
+      }
+      
+    }
+  }
 };
 </script>

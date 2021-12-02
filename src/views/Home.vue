@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" lg="3" md="4" v-for="i in videos" :key="i.id">
-        <v-card class="mx-auto rounded-0" max-width="300" flat :to="'play/' + i.id">
+        <v-card class="mx-auto rounded-0" max-width="300" flat :to="'/play/' + i.id">
           <v-img
             src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/591c8a010428634b4a33375c/images/5ab4866b2c7d3a56d8873f4c/file-MrylO8jADD.png"
           ></v-img>
@@ -10,9 +10,8 @@
             <v-card-title style="padding: 5px" class="pb-0"> {{i.titulo}} </v-card-title>
             <v-card-text style="padding: 5px; padding-top: 0px">
               <div style="color: #757575">{{i.autor.nomeAutor}}</div>
+              <div>{{i.visualizacoes ? i.visualizacoes : 0}} visualizações</div>
             </v-card-text>
-
-
         </v-card>
       </v-col>
     </v-row>

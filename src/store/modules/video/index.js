@@ -66,15 +66,38 @@ export default {
                     reject(err)
                   })
               })
+        },
+        getVideoPorNome({commit}, nome)
+        {
+            commit('loading', true)
+            commit('set_videos_search', [])
+            return new Promise((resolve, reject) => {
+                axios({url: uri+'/video/buscar/?nome=' + nome, 
+                method: 'GET' })
+                  .then(resp => {
+                        commit('set_videos_search', resp.data)
+                        commit('loading', false)
+                        resolve(resp.data)
+                  })
+                  .catch(err => {
+                    commit('loading', false)
+                    commit('error_msg', 'Falha ao carregar videos do servidor')
+                    reject(err)
+                  })
+              })
         }
     },
     state: {
         videos: [],
+        videos_search: [],
         video_play: []
     },
     mutations: {
         set_videos(state, videos){
             state.videos = videos
+        },
+        set_videos_search(state, videos){
+            state.videos_search = videos
         },
         set_video_play(state, video){
             state.video_play = video
@@ -83,5 +106,6 @@ export default {
     getters: {
         videos: state => state.videos,
         video_play: state => state.video_play,
+        videos_search: state => state.videos_search,
     },
 }

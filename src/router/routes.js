@@ -63,4 +63,12 @@ export default [
           requiresAuth: true
         }
       },
+      {
+        path: '/pesquisar/:nome',
+        name: 'pesquisar',
+        component: () => import('../views/PesquisarVideos'),
+        meta: {
+          requiresAuth: false
+        }
+      },
 ]
