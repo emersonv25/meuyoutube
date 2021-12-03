@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row v-if="videos.length > 0"> 
       <v-col cols="12" lg="3" md="4" v-for="i in videos" :key="i.id">
         <v-card class="mx-auto rounded-0" max-width="300" flat :to="'/play/' + i.id">
           <v-img
@@ -13,6 +13,11 @@
               <div>{{i.visualizacoes ? i.visualizacoes : 0}} visualizações</div>
             </v-card-text>
         </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-else>
+      <v-col cols="12">
+          <div>Nenhum vídeo encontrado</div>
       </v-col>
     </v-row>
   </v-container>

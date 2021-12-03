@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row v-if="videos.length > 0"> 
       <v-col cols="12"><v-btn outlined color="primary" to="upload"> <v-icon>mdi-video-plus</v-icon> Enviar</v-btn></v-col>
       <v-col cols="12" lg="3" md="4" v-for="i in videos" :key="i.id">
         <v-card class="mx-auto rounded-0" max-width="300" flat :to="'/play/' + i.id">
@@ -13,6 +13,11 @@
               <div style="color: #757575">{{i.autor.nomeAutor}}</div>
             </v-card-text>
         </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-else>
+      <v-col cols="12">
+          <div>Nenhum vídeo encontrado</div>
       </v-col>
     </v-row>
   </v-container>
@@ -39,7 +44,7 @@ export default {
     }
   },
   async beforeMount(){
-    await this.$store.dispatch('getVideoUser')
+    await this.$store.dispatch('getVideoUser', this.usuario.id)
   }
 };
 </script>

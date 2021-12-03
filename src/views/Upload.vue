@@ -29,7 +29,7 @@
             <v-card-actions>
                 <v-card-tex v-if="loading">Enviando vídeo...</v-card-tex>
                 <v-spacer></v-spacer>
-              <v-btn color="primary" large type="submit" outlined :loading="loading">
+              <v-btn color="primary" large type="submit" outlined>
                 <v-icon>mdi-upload</v-icon> Enviar
               </v-btn>
             </v-card-actions>
@@ -67,16 +67,20 @@ export default {
   methods: {
       async upload(){
         if(this.formValid){
-            if(this.video.size > 100){
+            if(this.video.size <= 100000000 && this.video.type == 'video/mp4'){
               this.loading = true
-                let thumb = await this.gerarThumbVideo(this.video);
+                //let thumb = await this.gerarThumbVideo(this.video);
                 let formData = new FormData();
                 formData.append('file', this.video)
-                formData.append('thumb', thumb)
+                //formData.append('thumb', thumb)
                 //console.log(formData.get('file'))
                 //console.log(formData.get('thumb'))
                 await this.$store.dispatch('upload', {titulo: this.titulo, descricao: this.descricao, file: formData})
                 this.loading = false
+            }
+            else if(this.video.type != 'video/mp4')
+            {
+              alert('Só é permitido vídeos no formato: MP4')
             }
             else{
                 alert('O arquivo "' + this.video.name + '" excedeu o limite de 100 Megabyte')

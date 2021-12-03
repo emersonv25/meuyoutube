@@ -10,17 +10,43 @@
                 <v-divider></v-divider>
             </v-col>
             <v-col cols="12">
-                <v-card-title class="align-end justify-left"><v-avatar><v-icon x-large>mdi-account-circle</v-icon></v-avatar><div style="padding: 10px">{{video_play.autor.nomeAutor}}</div></v-card-title>
-                <v-card-text>{{video_play.descricao}}</v-card-text>
+                <v-card class="mx-auto" flat>
+                    <v-list-item >
+                        <v-list-item-avatar tile>
+                            <v-icon x-large>mdi-account-circle</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content class="align-self-start">
+                            <v-list-item-title class="title">{{video_play.autor.nomeAutor}}</v-list-item-title>
+                                <div>
+                                    {{video_play.descricao}}
+                                </div>
+                            </v-list-item-content>
+                    </v-list-item>
+                </v-card>
             </v-col>
             <v-col cols="12">
                 <v-divider></v-divider>
+                <v-card-title>{{video_play.comentarios.length}} comentários</v-card-title>
                 <v-card-actions><v-avatar><v-icon x-large>mdi-account-circle</v-icon></v-avatar> <v-text-field label="Adicionar um comentário público..." v-model="comentario"> </v-text-field></v-card-actions>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="sencondary" tex>CANCELAR</v-btn>
-                    <v-btn color="primary">COMENTAR</v-btn>
+                    <v-btn color="primary" :loading="loading" @click="comentar">COMENTAR</v-btn>
                 </v-card-actions>
+            </v-col>
+            <v-col cols="12" v-for="i in video_play.comentarios" :key="i.id">
+                <v-card class="mx-auto" max-width="1080" outlined>
+                    <v-list-item >
+                        <v-list-item-avatar tile>
+                            <v-icon x-large>mdi-account-circle</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content class="align-self-start">
+                            <v-list-item-title class="title">{{i.nomeAutor}}</v-list-item-title>
+                                <div>
+                                    {{i.comentario}}
+                                </div>
+                            </v-list-item-content>
+                    </v-list-item>
+                </v-card>
             </v-col>
         </v-row>
     </v-container>
@@ -41,6 +67,15 @@ export default {
     ...mapGetters(["usuario"]),
     ...mapGetters(["videos"]),
     ...mapGetters(["video_play"]),
+  },
+  methods:{
+      async comentar(){
+          this.loading = true;
+          await this.$store.dispatch('postComentario', {comentario: this.comentario, id: this.$route.params.id})
+          await this.$store.dispatch('play', this.$route.params.id)
+          this.comentario = ""
+          this.loading = false;
+      }
   },
   watch:{
     '$route' (to) {

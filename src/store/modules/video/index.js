@@ -85,6 +85,19 @@ export default {
                     reject(err)
                   })
               })
+        },
+        postComentario({commit}, payload)
+        {
+            return new Promise((resolve, reject) =>{
+                axios({url: uri + 'video/comentar', data: {comentario: payload.comentario, id_video: payload.id}, method: "POST"})
+                .then(resp => {
+                  commit("success_msg", "Comentário enviado com sucesso !")
+                  resolve(resp)
+                }).catch(err => {
+                  commit('error_msg', err.response.data.error.message)
+                  reject(err)
+                })
+              })
         }
     },
     state: {

@@ -42,9 +42,9 @@
           <v-list>
             <v-list-item-title class="text-center">
               <v-icon size="35px">mdi-account-circle</v-icon>
-            {{usuario}}
+            {{usuario.nome}}
             </v-list-item-title>
-            <v-list-item-subtitle class="text-center"> <a href="/#/perfil">Gerenciar sua Conta</a> </v-list-item-subtitle>
+            <!--<v-list-item-subtitle class="text-center"> <a href="/#/perfil">Gerenciar sua Conta</a> </v-list-item-subtitle>!-->
             <v-divider></v-divider>
           </v-list>
         <v-list>

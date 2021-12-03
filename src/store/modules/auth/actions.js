@@ -6,10 +6,10 @@ export default{
     login({commit}, payload){
         commit("loading", true)
         return new Promise((resolve, reject) => {
-          axios({url: uri+'usuario/logar', data: {username: payload.username, password: payload.senha} , method: 'POST' })
+          axios({url: uri+'usuario/logar', data: {nome: payload.username, senha: payload.senha} , method: 'POST' })
           .then(resp => {
             const token = resp.headers.authorization
-            const usuario = resp.data.usuario.username
+            const usuario = resp.data.usuario
             localStorage.setItem('token', token)
             localStorage.setItem('user', JSON.stringify(usuario))
             axios.defaults.headers.common['authorization'] = token
@@ -33,7 +33,7 @@ export default{
     register({commit}, payload){
       commit("loading", true)
       return new Promise((resolve, reject) =>{
-        axios({url: uri + 'usuario/cadastrar', data: {username: payload.username, password: payload.senha,}, method: "POST"})
+        axios({url: uri + 'usuario/cadastrar', data: {nome: payload.username, senha: payload.senha,}, method: "POST"})
         .then(resp => {
           commit("success_msg", "Cadastro realizado com successo !")
           resolve(resp)
@@ -43,27 +43,4 @@ export default{
         })
       })
     },
-    deletarUsuario({ commit }, id) {
-      return new Promise((resolve, reject) => {
-          axios({ur: uri+'Auth/deletar?id=' + id, method: 'DELETE' }).then(resp => {
-              commit('success_msg', resp.data.message)
-              resolve(resp)
-          }).catch(err => {   
-              commit('error_msg', err.response.data.error.message)
-              reject(err)
-          })
-      })
-  },
-  editarUsuario({ commit }, usuario) {
-    return new Promise((resolve, reject) => {
-        axios({url: uri+'Auth/editar?id=' + usuario.id, data: usuario , method: 'PUT' }).then(resp => {
-            commit('success_msg', resp.data.message)
-            localStorage.setItem('user', JSON.stringify(usuario))
-            resolve(resp)
-        }).catch(err => {   
-            commit('error_msg', err.response.data.error.message)
-            reject(err)
-        })
-    })
-},
 }
