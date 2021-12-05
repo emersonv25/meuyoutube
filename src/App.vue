@@ -42,6 +42,13 @@ export default {
     ...mapGetters(['successMsg']),
     ...mapGetters(['isLoading']),
   },
+  watch: {
+    successMsg(new_val){
+      if(new_val){
+        setTimeout(()=>{this.$store.commit('remove_msg')},5000)
+      }
+    }  
+  },
   //Tratamento de casos de token expirados
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

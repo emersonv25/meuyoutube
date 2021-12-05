@@ -27,7 +27,7 @@
             <v-text-field outlined name="descricao" label="Descrição" v-model="descricao">
             </v-text-field>
             <v-card-actions>
-                <v-card-tex v-if="loading">Enviando vídeo...</v-card-tex>
+                <v-card-text v-if="loading">Enviando vídeo...</v-card-text>
                 <v-spacer></v-spacer>
               <v-btn color="primary" large type="submit" outlined>
                 <v-icon>mdi-upload</v-icon> Enviar
@@ -69,12 +69,13 @@ export default {
         if(this.formValid){
             if(this.video.size <= 100000000 && this.video.type == 'video/mp4'){
               this.loading = true
-                //let thumb = await this.gerarThumbVideo(this.video);
+                let thumb = await this.gerarThumbVideo(this.video);
+                console.log(thumb)
                 let formData = new FormData();
                 formData.append('file', this.video)
-                //formData.append('thumb', thumb)
-                //console.log(formData.get('file'))
-                //console.log(formData.get('thumb'))
+                formData.append('thumb', thumb)
+                console.log(formData.get('file'))
+                console.log(formData.get('thumb'))
                 await this.$store.dispatch('upload', {titulo: this.titulo, descricao: this.descricao, file: formData})
                 this.loading = false
             }
@@ -99,14 +100,14 @@ export default {
           video.autoplay = true;
           video.muted = true;
           video.src = URL.createObjectURL(file);
-
+          video.currentTime = 5
           video.onloadeddata = () => {
             let ctx = canvas.getContext("2d");
 
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = 320;
+            canvas.height = 180;
 
-            ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             video.pause();
             let dataURI = canvas.toDataURL("image/png");
 

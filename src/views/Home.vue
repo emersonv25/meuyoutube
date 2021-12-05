@@ -4,7 +4,8 @@
       <v-col cols="12" lg="3" md="4" v-for="i in videos" :key="i.id">
         <v-card class="mx-auto rounded-0" max-width="300" flat :to="'/play/' + i.id">
           <v-img
-            src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/591c8a010428634b4a33375c/images/5ab4866b2c7d3a56d8873f4c/file-MrylO8jADD.png"
+            :src="i.thumb"
+            :aspect-ratio="16/9"
           ></v-img>
 
             <v-card-title style="padding: 5px" class="pb-0"> {{i.titulo}} </v-card-title>

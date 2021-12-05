@@ -6,17 +6,25 @@
           <v-list-item :to="'/play/' + i.id">
             <v-list-item-avatar tile width="300" height="200">
               <v-img
-                src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/591c8a010428634b4a33375c/images/5ab4866b2c7d3a56d8873f4c/file-MrylO8jADD.png"
+                :src="i.thumb"
+                :aspect-ratio="16/9"
               ></v-img>
             </v-list-item-avatar>
             <v-list-item-content class="align-self-start">
               <v-list-item-title class="title">{{i.titulo}}</v-list-item-title>
               <div class="text-sm-body-2">{{i.visualizacoes ? i.visualizacoes : 0}} visualizações</div>
 
-              <div class=""><v-avatar><v-icon>mdi-account-circle</v-icon></v-avatar>{{i.autor.nomeAutor}}</div>
-              <div>
-                {{i.descricao}}
-              </div>
+              <v-list-item>
+                  <v-list-item-avatar tile>
+                      <v-icon large>mdi-account-circle</v-icon>
+                  </v-list-item-avatar>
+                  <v-list-item-content class="align-self-start">
+                      <v-list-item-title class="title">{{i.autor.nomeAutor}}</v-list-item-title>
+                      </v-list-item-content>
+                </v-list-item>
+                <div class="pl-16">
+                  {{i.descricao}}
+                </div>
             </v-list-item-content>
           </v-list-item>
         </v-card>
