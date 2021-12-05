@@ -21,7 +21,7 @@
       >
       <v-spacer></v-spacer>
       <v-divider vertical style="margin-right: 5px"></v-divider>
-      <v-btn outlined to="upload" class="rounded-0"> <v-icon>mdi-video-plus</v-icon> Enviar</v-btn>
+      <v-btn outlined to="/upload" class="rounded-0" > <v-icon>mdi-video-plus</v-icon> Enviar</v-btn>
       <div class="d-flex" style="text-align: center" tile>
         <v-menu offset-y min-width="200px" rounded="0">
           <template v-slot:activator="{ on, attrs }">
