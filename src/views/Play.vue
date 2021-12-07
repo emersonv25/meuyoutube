@@ -27,10 +27,11 @@
             <v-col cols="12">
                 <v-divider></v-divider>
                 <v-card-title>{{video_play.comentarios.length}} comentários</v-card-title>
-                <v-card-actions><v-avatar><v-icon x-large>mdi-account-circle</v-icon></v-avatar> <v-text-field label="Adicionar um comentário público..." v-model="comentario"> </v-text-field></v-card-actions>
+                <v-card-actions><v-avatar><v-icon x-large>mdi-account-circle</v-icon></v-avatar> <v-text-field label="Adicionar um comentário público..." v-model="comentario" :disabled="!isLoggedIn">> </v-text-field></v-card-actions>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" :loading="loading" @click="comentar">COMENTAR</v-btn>
+                    <v-btn color="primary" :loading="loading" @click="comentar" :disabled="!isLoggedIn">COMENTAR</v-btn>
+                    
                 </v-card-actions>
             </v-col>
             <v-col cols="12" v-for="i in video_play.comentarios" :key="i.id">
@@ -64,6 +65,7 @@ export default {
     };
   },
   computed: {
+      ...mapGetters(["isLoggedIn"]),
     ...mapGetters(["usuario"]),
     ...mapGetters(["videos"]),
     ...mapGetters(["video_play"]),

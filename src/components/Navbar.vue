@@ -52,7 +52,7 @@
         </v-list>
         </v-menu>
       </div>
-      <v-btn outlined color="primary" to="login" class="rounded-0" v-if="!isLoggedIn"> <v-icon>mdi-account-circle-outline</v-icon> Fazer Login</v-btn>
+      <v-btn outlined color="primary" to="/login" class="rounded-0" v-if="!isLoggedIn"> <v-icon>mdi-account-circle-outline</v-icon> Fazer Login</v-btn>
     </v-app-bar>
     <!-- SideBar !-->
     <v-navigation-drawer
@@ -118,7 +118,6 @@ export default {
   computed: {
     ...mapGetters(["usuario"]),
     ...mapGetters(["isLoggedIn"]),
-    ...mapGetters(["isAdmin"]),
     //isAdmin : function() {return this.$store.getters.isAdmin}
   },
   watch: {
