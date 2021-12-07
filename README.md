@@ -57,39 +57,39 @@ Editar a url das apis dentro do arquivo
 ## Prints
 * Tela Principal
 <p align="left">
-  <img src="prints/Home.png" width="480">
+  <img src="prints/Home.png" width="720">
 </p>
 
 * Pesquisar
 <p align="left">
-  <img src="prints/Pesquisar.png" width="480">
+  <img src="prints/Pesquisar.png" width="720">
 </p>
 
 * Tela de reprodução
 <p align="left">
-  <img src="prints/Video.png" width="480">
+  <img src="prints/Video.png" width="720">
 </p>
 
 * Comentários de um vídeo
 <p align="left">
-  <img src="prints/Comentarios.png" width="480">
+  <img src="prints/Comentarios.png" width="720">
 </p>
 * Tela de Login
 <p align="left">
-  <img src="prints/Login.png" width="480">
+  <img src="prints/Login.png" width="720">
 </p>
 
 * Tela de Registro
 <p align="left">
-  <img src="prints/Cadastro.png" width="480">
+  <img src="prints/Cadastro.png" width="720">
 </p>
 
 * Upload
 <p align="left">
-  <img src="prints/Upload.png" width="480">
+  <img src="prints/Upload.png" width="720">
 </p>
 
 * Modo Escuro
 <p align="left">
-  <img src="prints/Dark.png" width="480">
+  <img src="prints/Dark.png" width="720">
 </p>
